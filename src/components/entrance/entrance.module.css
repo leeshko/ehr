@@ -1,0 +1,55 @@
+@font-face {
+    font-family: 'PT Root UI';
+    src: local('PT Root UI Regular'), local('PT-Root-UI-Regular'), 
+    url('../../fonts/PTRootUI-Regular.woff2') format('woff2'), 
+    url('../../fonts/PTRootUI-Regular.woff') format('woff'), 
+    url('../../fonts/PTRootUI-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+.mainWindow {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+}
+
+.leftSide {
+    width: 50%;
+}
+
+.rightSide {
+    width: 40%;
+    height: 100%;
+    background-image: url('../../assets/entrance/Group 4436.png');
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.quaterRound {
+    position: absolute;
+    height: 315px;
+    width: 315px;
+    bottom: 0;
+    right: 0;
+    background-image: url(../../assets/entrance/Oval.png);
+    opacity: 0.5;
+}
+
+.wrapper {
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper > * {
+    margin-bottom: 64px;
+}
+
+.back {
+    color: rgba(23, 182, 124, 1);
+    font-family: 'PT Root UI';
+    font-size: 16px;
+    cursor: pointer;
+}

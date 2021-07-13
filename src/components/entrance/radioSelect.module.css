@@ -1,0 +1,45 @@
+label {
+    margin-right: 35px;
+    color: rgba(29, 41, 63, 1);
+}
+
+.radio {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    margin: 10px 0 0 7px;
+}
+
+.radio+label {
+    position: relative;
+    padding: 0 0 0 35px;
+    cursor: pointer;
+}
+
+.radio+label:before {
+    content: '';
+    position: absolute;
+    left: 3px;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #AAB8D1;
+    border-radius: 50%;
+    background: #FFF;
+}
+
+.radio+label:after {
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 3px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-image: url(../../assets/entrance/componentButton.png);
+    opacity: 0;
+    transition: .2s;
+}
+
+.radio:checked+label:after {
+    opacity: 1;
+}
