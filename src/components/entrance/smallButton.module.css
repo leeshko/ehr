@@ -1,10 +1,22 @@
 .btn {
     height: 40px;
-    width: 271px;
     border-radius: 2px;
     border-style: none;
     padding: 5px 16px 5px 16px;
     background-color: rgba(23, 182, 124, 1);
+    cursor: pointer;
+    font-family: 'PT Root UI';
+    color: rgba(255, 255, 255, 1);
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.btnNotActive {
+    height: 40px;
+    border-radius: 2px;
+    border-style: none;
+    padding: 5px 16px 5px 16px;
+    background-color: rgb(255, 255, 255);
     cursor: pointer;
     font-family: 'PT Root UI';
     color: rgba(255, 255, 255, 1);
@@ -20,7 +32,6 @@
     0% {
         opacity: 1;
     }
-    
     100% {
         opacity: 1;
     }

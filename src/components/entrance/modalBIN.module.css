@@ -1,0 +1,76 @@
+* {
+    font-family: 'PT Root UI';
+}
+
+.modalContainer {
+    width: calc(100% - 80px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.modalText {
+    color: rgba(29, 41, 63, 1);
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 31px;
+    letter-spacing: 0em;
+    text-align: center;
+}
+
+.labelInput {
+    display: block;
+    width: 100%;
+}
+
+.inputBlock {
+    width: 100%;
+}
+
+.labelName {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 15px;
+    letter-spacing: 0px;
+    text-align: left;
+    margin-bottom: 8px;
+}
+
+.inputField {
+    width: calc(100% - 16px);
+    height: 40px;
+    border-radius: 4px;
+    border: 1px solid rgba(211, 223, 240, 1);
+    padding-left: 16px;
+    color: rgba(29, 41, 63, 1);
+    margin-bottom: 24px;
+}
+
+.inputField::placeholder {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0px;
+    text-align: left;
+    color: rgba(170, 184, 209, 1);
+}
+
+.forgetPass {
+    font-family: 'PT Root UI';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.buttonPosition {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}

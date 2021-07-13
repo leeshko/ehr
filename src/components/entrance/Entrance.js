@@ -5,14 +5,16 @@ import RadioSelect from './RadioSelect';
 import SelectButton from './SelectButton';
 import RegisterBlock from './RegisterBlock';
 import ModalECP from './ModalECP';
+import ModalBIN from './ModalBIN';
 
 
 const Entrance = () => {
 
     const [selectedLoginWay, setselectedLoginWay] = useState('');
+    const [showModal, setShowModal] = useState(false);
+    const [showBinScr, setShowBinScr] = useState(false);
 
     const loginWay = (e) => {
-        console.log(e.target.value)
         if (e.target.value === 'ecp') {
             setselectedLoginWay('ecp');
         } else if (e.target.value === 'bin') {
@@ -21,12 +23,15 @@ const Entrance = () => {
     }
 
     const showEntranceForm = () => {
-        console.log('showForm')
-        
+        if (selectedLoginWay === 'ecp') {
+            setShowModal(true);
+        } else if (selectedLoginWay === 'bin') {
+            setShowBinScr(true);
+        }
     }
-
-    const state = {
-
+        
+    const closeModal =() => {
+        setShowModal(false);
     }
 
     let backArrow = '\u003c';
@@ -39,20 +44,26 @@ const Entrance = () => {
                     <Text />
                     <RadioSelect 
                         loginWay={loginWay}
-                    />
+                    />             
+                    
+                    { !showBinScr ? 
                     <SelectButton 
                         showEntranceForm={showEntranceForm}
-                    />
+                        >
+                        <p>Выбрать ключ ЭЦП на этом ПК</p>
+                    </SelectButton> 
+                    : null}
+                    {showBinScr ? <ModalBIN /> : null}
+                   
+                    {showModal ? <ModalECP closeModal={closeModal}/> : null}
+                        
                     <RegisterBlock /> 
-                    {/* <ModalECP /> */}
                 </div>
             </div>
             <div className={s.rightSide}>
                 <div className={s.quaterRound}></div>
             </div>
         </div>
-
-
     )
 }
 

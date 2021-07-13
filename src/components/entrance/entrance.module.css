@@ -17,6 +17,7 @@
 
 .leftSide {
     width: 50%;
+
 }
 
 .rightSide {
@@ -25,6 +26,7 @@
     background-image: url('../../assets/entrance/Group 4436.png');
     background-repeat: no-repeat;
     position: relative;
+
 }
 
 .quaterRound {

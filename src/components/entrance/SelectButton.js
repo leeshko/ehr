@@ -1,11 +1,10 @@
 import s from '../../components/entrance/selectButton.module.css';
-const SelectButton = ({ showEntranceForm }) => {
+
+const SelectButton = ({ showEntranceForm, children }) => {
     return (
         <button className={s.btn} onClick={showEntranceForm}>
-            Выбрать ключ ЭЦП на этом ПК
+            {children}
         </button>
-
-
     )
 }
 
