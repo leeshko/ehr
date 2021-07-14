@@ -6,13 +6,15 @@ import SelectButton from './SelectButton';
 import RegisterBlock from './RegisterBlock';
 import ModalECP from './ModalECP';
 import ModalBIN from './ModalBIN';
+import FirstRegScreen from './FirstRegScreen';
+import EnterAccBlock from './EnterAccBlock';
+import EmployerRegScreen from './EmployerRegScreen';
 
 
 const Entrance = () => {
 
     const [selectedLoginWay, setselectedLoginWay] = useState('');
-    const [showModal, setShowModal] = useState(false);
-    const [showBinScr, setShowBinScr] = useState(false);
+    const [screenShow, setScreenShow] = useState('start');
 
     const loginWay = (e) => {
         if (e.target.value === 'ecp') {
@@ -24,43 +26,83 @@ const Entrance = () => {
 
     const showEntranceForm = () => {
         if (selectedLoginWay === 'ecp') {
-            setShowModal(true);
+            setScreenShow('ecp');
         } else if (selectedLoginWay === 'bin') {
-            setShowBinScr(true);
+            setScreenShow('bin');
         }
     }
-        
-    const closeModal =() => {
-        setShowModal(false);
+
+    const closeModal = () => {
+        setScreenShow('start');
+    }
+
+    const register = () => {
+        setScreenShow('register')
+    }
+
+    const goToEmployer = () => {
+        setScreenShow('employerReg');
+        console.log(121212)
     }
 
     let backArrow = '\u003c';
-    
+
     return (
         <div className={s.mainWindow}>
             <div className={s.leftSide}>
                 <div className={s.wrapper}>
                     <div className={s.back}> {backArrow} Назад</div>
-                    <Text />
-                    <RadioSelect 
+                    <Text>
+                        {console.log(screenShow)}
+                        {screenShow === 'start' || screenShow === 'ecp' ? <p>Вход</p> : null}
+                        {screenShow === 'register' ? <p>Регистрация</p> : null}
+                    </Text>
+
+                    {screenShow === 'start' || screenShow === 'ecp' ?
+                    <RadioSelect
                         loginWay={loginWay}
-                    />             
-                    
-                    { !showBinScr ? 
-                    <SelectButton 
-                        showEntranceForm={showEntranceForm}
-                        >
-                        <p>Выбрать ключ ЭЦП на этом ПК</p>
-                    </SelectButton> 
-                    : null}
-                    {showBinScr ? <ModalBIN /> : null}
-                   
-                    {showModal ? <ModalECP closeModal={closeModal}/> : null}
+                    /> : null}
+
+                    {screenShow === 'start' || screenShow === 'ecp' ?
                         
-                    <RegisterBlock /> 
+                            <SelectButton
+                                showEntranceForm={showEntranceForm}
+                            >
+                                <p>Выбрать ключ ЭЦП на этом ПК</p>
+                            </SelectButton>
+                        
+                        : null}
+
+                    {screenShow === 'bin' ? <ModalBIN /> : null}
+
+                    {screenShow === 'ecp' ? <ModalECP closeModal={closeModal} /> : null}
+
+                    {screenShow === 'register' ? <FirstRegScreen goToEmployer={goToEmployer}/> : null}
+
+                    {screenShow === 'register' ? <EnterAccBlock /> : null}
+
+                    {screenShow === 'bin' || screenShow === 'ecp' || screenShow === 'start' ? <RegisterBlock register={register} /> : null}
+
+                    {screenShow === 'employerReg' ? 
+                    <>
+                            <Text>
+                                <p>Регистрация</p>
+                            </Text>
+                    <h2>Регистрация работодателя</h2>
+
+                    <EmployerRegScreen /> 
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    </>
+                    : null}
                 </div>
             </div>
-            <div className={s.rightSide}>
+            <div className={(screenShow === 'register' || screenShow === 'employerReg') ? s.rightSideReg : s.rightSide} >
                 <div className={s.quaterRound}></div>
             </div>
         </div>

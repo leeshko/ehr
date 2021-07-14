@@ -1,0 +1,12 @@
+.noAcc, .regAcc {
+    color: rgba(29, 41, 63, 1);
+}
+
+.noAcc {
+    margin-right: 8px;
+}
+
+.regAcc {
+    font-weight: 700;
+    text-decoration: none;
+}

@@ -1,8 +1,8 @@
 import s from './text.module.css';
-const Buttons = () => {
+const Buttons = ({children}) => {
     return (
         <>
-        <div className={s.textEnter}>Вход</div>
+        <div className={s.textEnter}>{children}</div>
         </>
     )
 }

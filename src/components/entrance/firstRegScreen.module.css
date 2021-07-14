@@ -1,0 +1,7 @@
+.buttonBlock {
+    display: flex;
+}
+
+.buttonBlock > button {
+    margin-right: 30px;
+}

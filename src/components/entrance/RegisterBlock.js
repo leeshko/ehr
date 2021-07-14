@@ -1,10 +1,11 @@
 import s from './registerBloc.module.css';
 
-const RegisterBlock = () => {
+const RegisterBlock = ({register}) => {
+
     return (
         <div className={s.register}>
             <span className={s.noAcc}>Еще нет аккаунта?</span>
-            <a href="#" className={s.regAcc}>Зарегистрируйтесь.</a>
+            <a href="#" className={s.regAcc} onClick={register}>Зарегистрируйтесь.</a>
         </div>
 
     )
