@@ -2,18 +2,24 @@ import SmallButton from "./SmallButton";
 import s from './firstRegScreen.module.css';
 
 
-const FirstRegScreen = ({ goToEmployer }) => {
+const FirstRegScreen = ({ goToEmployer, goToWorker }) => {
 
     return (
-        <div className={s.buttonBlock} onClick={goToEmployer}>
-        <SmallButton >
-            Я - работодатель
-        </SmallButton>
+        <div className={s.buttonBlock} >
+            <SmallButton >
+                <div className={s.buttonInside} onClick={goToEmployer}>
+                    <p> Я - работодатель</p>
+                </div>
+            </SmallButton>
 
-        <SmallButton>
-            Я - работник
-        </SmallButton>
-</div>
+            <SmallButton >
+                <div className={s.buttonInside} onClick={goToWorker}>
+                    <p>Я - работник</p>
+
+                </div>
+
+            </SmallButton>
+        </div>
     )
 }
 

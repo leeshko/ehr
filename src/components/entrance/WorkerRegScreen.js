@@ -1,14 +1,14 @@
-import React, {useState} from 'react';
+import React, {useState} from 'react'
 import s from './modalBIN.module.css';
 import SelectButton from './SelectButton';
+import SmallButton from './SmallButton';
 import Checkbox from './Checkbox';
 import PasswordModal from './PasswordModal';
 import CheckboxSq from './CheckboxSq';
 import RegisterBlockEnter from './RegisterBlockEnter';
 
 
-const EmployerRegScreen = ({assign}) => {
-
+const WorkerRegScreen = ({assign}) => {
 
     const [showEmail, setShowEmail] = useState(false);
     const [showPassModal, setShowPassModal] = useState(false);
@@ -27,13 +27,13 @@ const EmployerRegScreen = ({assign}) => {
                 <div className={s.inputBlock}>
                     <form>
                         <label>
-                            <div className={s.labelName}>БИН/ИИН</div>
+                            <div className={s.labelName}>ИИН</div>
                             <input className={s.inputField} placeholder='Введите 12 цифр' type="number" maxlength="8" name="BIN" />
                         </label>
 
                         <label>
-                            <div className={s.labelName}>Полное наименование</div>
-                            <input className={s.inputFieldAuto} placeholder='Заполняется автоматически после ввода БИН/ИИН' disabled type="text" name="name" />
+                            <div className={s.labelName}>Фамилия, имя и отчество (если есть)</div>
+                            <input className={s.inputFieldAuto} placeholder='Заполняется автоматически после ввода ИИН' disabled type="text" name="name" />
                         </label>
 
                         <label>
@@ -43,7 +43,7 @@ const EmployerRegScreen = ({assign}) => {
                                 <Checkbox displayEmail={displayEmail}/>
                                 <div className={s.labelName}>E-mail</div>
                             </div>
-                            <input className={s.inputField} placeholder={!showEmail ? '+7 (_ _ _) - _ _ _ - _ _ - _ _' : 'e-mail'} type="number" name="number" />
+                            <input className={s.inputField} placeholder={!showEmail ? '+7 (_ _ _) - _ _ _ - _ _ - _ _' : 'example@gmail.com'} type="number" name="number" />
                         </label>
                         <label>
                             
@@ -66,14 +66,13 @@ const EmployerRegScreen = ({assign}) => {
                         </CheckboxSq>
                         <a></a>
                     <div className={s.buttonPosition}>
-                        <SelectButton 
+                        <SmallButton
                             communication={showEmail ? 'email' : 'phone'}
                             assign={assign}
-                            job={'employer'}
-                            >
-                                
-                            <p>Подписать ЭЦП и продолжить</p>
-                        </SelectButton>    
+                            job={'worker'}
+                        >
+                            <p>Продолжить</p>
+                        </SmallButton>    
                     </div>
                     <RegisterBlockEnter />
                 </div>
@@ -82,4 +81,4 @@ const EmployerRegScreen = ({assign}) => {
     )
 }
 
-export default EmployerRegScreen;
+export default WorkerRegScreen;

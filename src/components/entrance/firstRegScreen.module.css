@@ -2,6 +2,14 @@
     display: flex;
 }
 
-.buttonBlock > button {
+.buttonBlock>button {
     margin-right: 30px;
+}
+
+.buttonInside {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

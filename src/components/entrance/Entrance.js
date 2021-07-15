@@ -9,6 +9,8 @@ import ModalBIN from './ModalBIN';
 import FirstRegScreen from './FirstRegScreen';
 import EnterAccBlock from './EnterAccBlock';
 import EmployerRegScreen from './EmployerRegScreen';
+import WorkerRegScreen from './WorkerRegScreen';
+import ConfirmationCode from './ConfirmationCode';
 
 
 const Entrance = () => {
@@ -42,7 +44,25 @@ const Entrance = () => {
 
     const goToEmployer = () => {
         setScreenShow('employerReg');
-        console.log(121212)
+    }
+    const goToWorker = () => {
+        console.log('worker')
+        setScreenShow('workerReg');
+    }
+
+
+
+    const assign = (job, communication) => {
+        console.log(`${job}`, `${communication}`)
+        if (job === 'employer' && communication === 'phone') {
+            setScreenShow('assignPhoneEmpl');
+        } else if (job === 'employer' && communication === 'email') {
+            setScreenShow('assignEmailEmpl');
+        } else if (job === 'worker' && communication === 'phone') {
+            setScreenShow('assignPhoneWork');
+        } else if (job === 'worker' && communication === 'email') {
+            setScreenShow('assignEmailWork');
+        }
     }
 
     let backArrow = '\u003c';
@@ -53,9 +73,13 @@ const Entrance = () => {
                 <div className={s.wrapper}>
                     <div className={s.back}> {backArrow} Назад</div>
                     <Text>
-                        {console.log(screenShow)}
                         {screenShow === 'start' || screenShow === 'ecp' ? <p>Вход</p> : null}
                         {screenShow === 'register' ? <p>Регистрация</p> : null}
+                        {screenShow === 'assignPhoneEmpl' || screenShow === 'assignEmailEmpl' 
+                            || screenShow === 'assignPhoneWork'
+                            || screenShow === 'assignEmailWork'
+                            ? <p>Код подтверждения</p> : null}
+
                     </Text>
 
                     {screenShow === 'start' || screenShow === 'ecp' ?
@@ -77,7 +101,7 @@ const Entrance = () => {
 
                     {screenShow === 'ecp' ? <ModalECP closeModal={closeModal} /> : null}
 
-                    {screenShow === 'register' ? <FirstRegScreen goToEmployer={goToEmployer}/> : null}
+                    {screenShow === 'register' ? <FirstRegScreen goToEmployer={goToEmployer} goToWorker={goToWorker}/> : null}
 
                     {screenShow === 'register' ? <EnterAccBlock /> : null}
 
@@ -90,19 +114,40 @@ const Entrance = () => {
                             </Text>
                     <h2>Регистрация работодателя</h2>
 
-                    <EmployerRegScreen /> 
-                    
-                    
-                    
-                    
-                    
-                    
-                    
+                    <EmployerRegScreen 
+                        assign={assign}
+                    /> 
                     </>
+                    : null}
+                    
+                    {screenShow === 'workerReg' ? 
+                    <>
+                            <Text>
+                                <p>Регистрация</p>
+                            </Text>
+                    <h2>Регистрация работника</h2>
+
+                            <WorkerRegScreen />
+                    </>
+                    : null}
+
+                    {screenShow === 'assignPhoneEmpl' || screenShow ==='assignPhoneWork' ?
+                    
+                        <ConfirmationCode text={'Код из СМС'}>
+                            <p>На указанный вами номер телефона выслан 4-значный проверочный код. Введите его в поле ниже:</p>
+                    </ConfirmationCode>
+                    : null}
+                    
+                    {screenShow === 'assignEmailEmpl' || screenShow === 'assignPhoneWork' ?
+                    
+                        <ConfirmationCode text={'Код из e-mail'}>
+                            <p>На указанный вами e-mail выслан 4-значный проверочный код. Введите его в поле ниже:</p>
+                            
+                    </ConfirmationCode>
                     : null}
                 </div>
             </div>
-            <div className={(screenShow === 'register' || screenShow === 'employerReg') ? s.rightSideReg : s.rightSide} >
+            <div className={(screenShow === 'register' || screenShow === 'employerReg' || screenShow === 'workerReg') ? s.rightSideReg : s.rightSide} >
                 <div className={s.quaterRound}></div>
             </div>
         </div>
