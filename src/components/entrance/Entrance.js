@@ -27,6 +27,7 @@ const Entrance = () => {
     }
 
     const showEntranceForm = () => {
+        console.log('showform')
         if (selectedLoginWay === 'ecp') {
             setScreenShow('ecp');
         } else if (selectedLoginWay === 'bin') {
@@ -50,7 +51,32 @@ const Entrance = () => {
         setScreenShow('workerReg');
     }
 
-
+    const moveBack = () => {
+        
+        switch (screenShow) {
+        case 'start':
+            // future action
+            break;
+            case 'ecp':
+                setScreenShow('start');
+                break;
+            case 'bin':
+                setScreenShow('start');
+                break;
+            case 'register':
+                setScreenShow('start');
+                break;
+            case 'employerReg':
+                setScreenShow('register');
+                break;
+            case 'workerReg':
+                setScreenShow('register');
+                break;
+            default:
+                setScreenShow('start');
+            break;
+        }
+    }
 
     const assign = (job, communication) => {
         console.log(`${job}`, `${communication}`)
@@ -71,9 +97,9 @@ const Entrance = () => {
         <div className={s.mainWindow}>
             <div className={s.leftSide}>
                 <div className={s.wrapper}>
-                    <div className={s.back}> {backArrow} Назад</div>
+                    <div className={s.back} onClick={moveBack}> {backArrow} Назад</div>
                     <Text>
-                        {screenShow === 'start' || screenShow === 'ecp' ? <p>Вход</p> : null}
+                        {screenShow === 'start' || screenShow === 'ecp' || screenShow === 'bin' ? <p>Вход</p> : null}
                         {screenShow === 'register' ? <p>Регистрация</p> : null}
                         {screenShow === 'assignPhoneEmpl' || screenShow === 'assignEmailEmpl' 
                             || screenShow === 'assignPhoneWork'
@@ -127,7 +153,8 @@ const Entrance = () => {
                             </Text>
                     <h2>Регистрация работника</h2>
 
-                            <WorkerRegScreen />
+                            <WorkerRegScreen 
+                                assign={assign}/>
                     </>
                     : null}
 

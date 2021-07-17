@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import s from './modalBIN.module.css';
 import SelectButton from './SelectButton';
-import SmallButton from './SmallButton';
 import Checkbox from './Checkbox';
 import PasswordModal from './PasswordModal';
 import CheckboxSq from './CheckboxSq';
@@ -66,13 +65,14 @@ const WorkerRegScreen = ({assign}) => {
                         </CheckboxSq>
                         <a></a>
                     <div className={s.buttonPosition}>
-                        <SmallButton
+                        <SelectButton
                             communication={showEmail ? 'email' : 'phone'}
                             assign={assign}
-                            job={'worker'}
+                            job={'employer'}
                         >
-                            <p>Продолжить</p>
-                        </SmallButton>    
+
+                            <p>Подписать ЭЦП и продолжить</p>
+                        </SelectButton>
                     </div>
                     <RegisterBlockEnter />
                 </div>

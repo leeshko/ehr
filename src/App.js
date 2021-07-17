@@ -1,4 +1,3 @@
-import s from './app.module.css';
 import Entrance from './components/entrance/Entrance';
 
 function App() {
