@@ -7,11 +7,13 @@ import CheckboxSq from './CheckboxSq';
 import RegisterBlockEnter from './RegisterBlockEnter';
 
 
-const EmployerRegScreen = ({assign}) => {
+const EmployerRegScreen = ({ assign, showError, setShowError }) => {
 
 
     const [showEmail, setShowEmail] = useState(false);
     const [showPassModal, setShowPassModal] = useState(false);
+
+    const regexpBIN = /^[0-9]{12}$/;
 
     const displayEmail = (e) => {
         setShowEmail(e.target.checked);
@@ -21,6 +23,21 @@ const EmployerRegScreen = ({assign}) => {
         setShowPassModal(!showPassModal)
     }
 
+    const isBinPattern = (e) => {
+
+        let result = regexpBIN.test(e.target.value);
+        e.target.onblur = function () {
+            if (result) {
+                setShowError(false);
+            } else {
+                setShowError(true);
+            }
+        };
+        e.target.onfocus = function () {
+            setShowError(false);
+        };
+    }
+
     return (
         <>
             <div className={s.modalContainer}>
@@ -28,7 +45,10 @@ const EmployerRegScreen = ({assign}) => {
                     <form>
                         <label>
                             <div className={s.labelName}>БИН/ИИН</div>
-                            <input className={s.inputField} placeholder='Введите 12 цифр' type="number" maxlength="8" name="BIN" />
+                            <input className={s.inputField} placeholder='Введите 12 цифр' type="number" maxLength="8" name="BIN" 
+                                onChange={(e) => {
+                                    isBinPattern(e)
+                                }}/>
                         </label>
 
                         <label>

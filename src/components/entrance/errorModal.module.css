@@ -1,0 +1,25 @@
+.error {
+    position: absolute;
+    width: 500px;
+    height: 96px;
+    background-color: rgba(230, 83, 50, 1);
+    margin-left: calc(50% - 250px);
+    z-index: 4;
+    display: flex;
+}
+
+.error>div {
+    color: rgba(255, 255, 255, 1);
+    font-family: 'PT Root UI';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+div {
+    justify-content: center;
+}

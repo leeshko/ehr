@@ -4,9 +4,7 @@ import React, { useState } from 'react'
 
 
 
-const ModalECP = () => {
-
-    const [showError, setShowError] = useState(() => false);
+const ModalECP = ({ showError, setShowError}) => {
 
     const regexpBIN = /^[0-9]{12}$/;
 
@@ -32,7 +30,7 @@ const ModalECP = () => {
                     <form>
                         <label>
                             <div className={s.labelName}>БИН/ИИН</div>
-                            <input className={s.inputField} placeholder='Введите 12 цифр' type={'number'}
+                            <input className={showError ? s.inputFieldError : s.inputField} placeholder='Введите 12 цифр' type={'number'}
                                 name="BIN"
                                 onChange={(e) => {
                                     isBinPattern(e)}}
@@ -41,7 +39,7 @@ const ModalECP = () => {
 
                         <label>
                             <div className={s.labelName}>Пароль</div>
-                            <input className={s.inputField} placeholder='Введите свой пароль' type="text" name="password" />
+                            <input className={s.inputField} placeholder='Введите свой пароль' type="password" name="password" />
                         </label>
                     </form>
 

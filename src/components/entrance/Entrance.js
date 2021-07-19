@@ -11,12 +11,14 @@ import EnterAccBlock from './EnterAccBlock';
 import EmployerRegScreen from './EmployerRegScreen';
 import WorkerRegScreen from './WorkerRegScreen';
 import ConfirmationCode from './ConfirmationCode';
+import ErrorModal from './errorModal';
 
 
 const Entrance = () => {
 
     const [selectedLoginWay, setselectedLoginWay] = useState('');
     const [screenShow, setScreenShow] = useState('start');
+    const [showError, setShowError] = useState(() => false);
 
     const loginWay = (e) => {
         if (e.target.value === 'ecp') {
@@ -52,11 +54,11 @@ const Entrance = () => {
     }
 
     const moveBack = () => {
-        
+
         switch (screenShow) {
-        case 'start':
-            // future action
-            break;
+            case 'start':
+                // future action
+                break;
             case 'ecp':
                 setScreenShow('start');
                 break;
@@ -74,7 +76,7 @@ const Entrance = () => {
                 break;
             default:
                 setScreenShow('start');
-            break;
+                break;
         }
     }
 
@@ -94,90 +96,104 @@ const Entrance = () => {
     let backArrow = '\u003c';
 
     return (
-        <div className={s.mainWindow}>
-            <div className={s.leftSide}>
-                <div className={s.wrapper}>
-                    <div className={s.back} onClick={moveBack}> {backArrow} Назад</div>
-                    <Text>
-                        {screenShow === 'start' || screenShow === 'ecp' || screenShow === 'bin' ? <p>Вход</p> : null}
-                        {screenShow === 'register' ? <p>Регистрация</p> : null}
-                        {screenShow === 'assignPhoneEmpl' || screenShow === 'assignEmailEmpl' 
-                            || screenShow === 'assignPhoneWork'
-                            || screenShow === 'assignEmailWork'
-                            ? <p>Код подтверждения</p> : null}
+        <>
+            {showError ?
+                <ErrorModal>
+                    {(screenShow === 'bin' || screenShow === 'employerReg') && <div>Введен неверный БИН/ИИН</div>}
+                </ErrorModal> : null}
+            <div className={s.mainWindow}>
+                <div className={s.leftSide}>
+                    <div className={s.wrapper}>
+                        <div className={s.back} onClick={moveBack}> {backArrow} Назад</div>
+                        <Text>
+                            {screenShow === 'start' || screenShow === 'ecp' || screenShow === 'bin' ? <p>Вход</p> : null}
+                            {screenShow === 'register' ? <p>Регистрация</p> : null}
+                            {screenShow === 'assignPhoneEmpl' || screenShow === 'assignEmailEmpl'
+                                || screenShow === 'assignPhoneWork'
+                                || screenShow === 'assignEmailWork'
+                                ? <p>Код подтверждения</p> : null}
 
-                    </Text>
+                        </Text>
 
-                    {screenShow === 'start' || screenShow === 'ecp' ?
-                    <RadioSelect
-                        loginWay={loginWay}
-                    /> : null}
+                        {screenShow === 'start' || screenShow === 'ecp' ?
+                            <RadioSelect
+                                loginWay={loginWay}
+                            /> : null}
 
-                    {screenShow === 'start' || screenShow === 'ecp' ?
-                        
+                        {screenShow === 'start' || screenShow === 'ecp' ?
+
                             <SelectButton
                                 showEntranceForm={showEntranceForm}
                             >
                                 <p>Выбрать ключ ЭЦП на этом ПК</p>
                             </SelectButton>
-                        
-                        : null}
 
-                    {screenShow === 'bin' ? <ModalBIN /> : null}
+                            : null}
 
-                    {screenShow === 'ecp' ? <ModalECP closeModal={closeModal} /> : null}
+                        {screenShow === 'bin' && <ModalBIN
+                            showError={showError}
+                            setShowError={setShowError}
+                        />}
 
-                    {screenShow === 'register' ? <FirstRegScreen goToEmployer={goToEmployer} goToWorker={goToWorker}/> : null}
+                        {screenShow === 'ecp' ? <ModalECP
+                            closeModal={closeModal}
 
-                    {screenShow === 'register' ? <EnterAccBlock /> : null}
 
-                    {screenShow === 'bin' || screenShow === 'ecp' || screenShow === 'start' ? <RegisterBlock register={register} /> : null}
+                        /> : null}
 
-                    {screenShow === 'employerReg' ? 
-                    <>
-                            <Text>
-                                <p>Регистрация</p>
-                            </Text>
-                    <h2>Регистрация работодателя</h2>
+                        {screenShow === 'register' && <FirstRegScreen goToEmployer={goToEmployer} goToWorker={goToWorker} />}
 
-                    <EmployerRegScreen 
-                        assign={assign}
-                    /> 
-                    </>
-                    : null}
-                    
-                    {screenShow === 'workerReg' ? 
-                    <>
-                            <Text>
-                                <p>Регистрация</p>
-                            </Text>
-                    <h2>Регистрация работника</h2>
+                        {screenShow === 'register' && <EnterAccBlock />}
 
-                            <WorkerRegScreen 
-                                assign={assign}/>
-                    </>
-                    : null}
+                        {screenShow === 'bin' || screenShow === 'ecp' || screenShow === 'start' ? <RegisterBlock register={register} /> : null}
 
-                    {screenShow === 'assignPhoneEmpl' || screenShow ==='assignPhoneWork' ?
-                    
-                        <ConfirmationCode text={'Код из СМС'}>
-                            <p>На указанный вами номер телефона выслан 4-значный проверочный код. Введите его в поле ниже:</p>
-                    </ConfirmationCode>
-                    : null}
-                    
-                    {screenShow === 'assignEmailEmpl' || screenShow === 'assignPhoneWork' ?
-                    
-                        <ConfirmationCode text={'Код из e-mail'}>
-                            <p>На указанный вами e-mail выслан 4-значный проверочный код. Введите его в поле ниже:</p>
-                            
-                    </ConfirmationCode>
-                    : null}
+                        {screenShow === 'employerReg' ?
+                            <>
+                                <Text>
+                                    <p>Регистрация</p>
+                                </Text>
+                                <h2>Регистрация работодателя</h2>
+
+                                <EmployerRegScreen
+                                    assign={assign}
+                                    setShowError={setShowError}
+                                />
+                            </>
+                            : null}
+
+                        {screenShow === 'workerReg' ?
+                            <>
+                                <Text>
+                                    <p>Регистрация</p>
+                                </Text>
+                                <h2>Регистрация работника</h2>
+
+                                <WorkerRegScreen
+                                    assign={assign} />
+                            </>
+                            : null}
+
+                        {screenShow === 'assignPhoneEmpl' || screenShow === 'assignPhoneWork' ?
+
+                            <ConfirmationCode text={'Код из СМС'}>
+                                <p>На указанный вами номер телефона выслан 4-значный проверочный код. Введите его в поле ниже:</p>
+                            </ConfirmationCode>
+                            : null}
+
+                        {screenShow === 'assignEmailEmpl' || screenShow === 'assignPhoneWork' ?
+
+                            <ConfirmationCode text={'Код из e-mail'}>
+                                <p>На указанный вами e-mail выслан 4-значный проверочный код. Введите его в поле ниже:</p>
+
+                            </ConfirmationCode>
+                            : null}
+                    </div>
+                </div>
+                <div className={(screenShow === 'register' || screenShow === 'employerReg' || screenShow === 'workerReg') ? s.rightSideReg : s.rightSide} >
+                    <div className={s.quaterRound}></div>
                 </div>
             </div>
-            <div className={(screenShow === 'register' || screenShow === 'employerReg' || screenShow === 'workerReg') ? s.rightSideReg : s.rightSide} >
-                <div className={s.quaterRound}></div>
-            </div>
-        </div>
+        </>
     )
 }
 
