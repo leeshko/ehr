@@ -10,3 +10,9 @@
     font-weight: 700;
     text-decoration: none;
 }
+
+@media (max-width: 320px) {
+    .noAcc, .regAcc {
+        font-size: 15px;
+    }
+}

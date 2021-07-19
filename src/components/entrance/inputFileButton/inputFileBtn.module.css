@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.btn::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+.btn {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+.styledInput {
+    display: inline-block;
+    height: 40px;
+    width: 271px;
+    border-radius: 2px;
+    border-style: none;
+    padding: 5px 16px 5px 16px;
+    background-color: rgba(23, 182, 124, 1);
+    cursor: pointer;
+    font-family: 'PT Root UI';
+    color: rgba(255, 255, 255, 1);
+    font-weight: 500;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn:hover::before {
+    border-color: black;
+}
+
+.btn:active::before {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+@media (max-width: 320px) {
+    .styledInput {
+        width: calc(100% - 34px);
+        padding: 0;
+    }
+}

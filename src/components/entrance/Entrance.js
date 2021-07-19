@@ -12,21 +12,26 @@ import EmployerRegScreen from './EmployerRegScreen';
 import WorkerRegScreen from './WorkerRegScreen';
 import ConfirmationCode from './ConfirmationCode';
 import ErrorModal from './errorModal';
+import InputFileBtn from './inputFileButton/InputFileBtn';
 
 
 const Entrance = () => {
 
-    const [selectedLoginWay, setselectedLoginWay] = useState('');
+    const [selectedLoginWay, setselectedLoginWay] = useState('bin');
     const [screenShow, setScreenShow] = useState('start');
     const [showError, setShowError] = useState(() => false);
 
     const loginWay = (e) => {
         if (e.target.value === 'ecp') {
             setselectedLoginWay('ecp');
-        } else if (e.target.value === 'bin') {
+        }
+        else if (e.target.value === 'bin') {
             setselectedLoginWay('bin');
         }
     }
+
+    console.log('selectedLoginWay', selectedLoginWay)
+    console.log('screenShow', screenShow)
 
     const showEntranceForm = () => {
         console.log('showform')
@@ -61,12 +66,15 @@ const Entrance = () => {
                 break;
             case 'ecp':
                 setScreenShow('start');
+                setselectedLoginWay('bin');
                 break;
             case 'bin':
                 setScreenShow('start');
+                setselectedLoginWay('bin');
                 break;
             case 'register':
                 setScreenShow('start');
+                setselectedLoginWay('bin');
                 break;
             case 'employerReg':
                 setScreenShow('register');
@@ -76,6 +84,7 @@ const Entrance = () => {
                 break;
             default:
                 setScreenShow('start');
+                setselectedLoginWay('bin');
                 break;
         }
     }
@@ -99,10 +108,14 @@ const Entrance = () => {
         <>
             {showError ?
                 <ErrorModal>
-                    {(screenShow === 'bin' || screenShow === 'employerReg') && <div>Введен неверный БИН/ИИН</div>}
+                    {(screenShow === 'start' || screenShow === 'employerReg') && <div>Введен неверный БИН/ИИН</div>}
                 </ErrorModal> : null}
             <div className={s.mainWindow}>
                 <div className={s.leftSide}>
+                    <header className={s.topRow}>
+                        <a className={s.topRowText} href='#'>Пользовательское соглашение</a>
+                    </header>
+                    <div className={s.logoBlock}></div>
                     <div className={s.wrapper}>
                         <div className={s.back} onClick={moveBack}> {backArrow} Назад</div>
                         <Text>
@@ -115,25 +128,28 @@ const Entrance = () => {
 
                         </Text>
 
-                        {screenShow === 'start' || screenShow === 'ecp' ?
+                        {(screenShow === 'start' || screenShow === 'ecp' || screenShow === 'bin') &&
                             <RadioSelect
                                 loginWay={loginWay}
-                            /> : null}
+                                selectedLoginWay={selectedLoginWay}
+                            />}
 
-                        {screenShow === 'start' || screenShow === 'ecp' ?
-
-                            <SelectButton
-                                showEntranceForm={showEntranceForm}
+                        {(selectedLoginWay === 'bin' && screenShow === 'start') &&
+                            <ModalBIN
+                                showError={showError}
+                                setShowError={setShowError}
                             >
+
+                            </ModalBIN>}
+
+                        {(selectedLoginWay === 'ecp' && screenShow === 'start') &&
+
+                            <InputFileBtn
+                                showEntranceForm={showEntranceForm}>
                                 <p>Выбрать ключ ЭЦП на этом ПК</p>
-                            </SelectButton>
+                            </InputFileBtn>
+                        }
 
-                            : null}
-
-                        {screenShow === 'bin' && <ModalBIN
-                            showError={showError}
-                            setShowError={setShowError}
-                        />}
 
                         {screenShow === 'ecp' ? <ModalECP
                             closeModal={closeModal}
@@ -188,6 +204,13 @@ const Entrance = () => {
                             </ConfirmationCode>
                             : null}
                     </div>
+                    <footer className={s.footerBlock}>
+                        <div className={s.footerLogo}></div>  
+                        <a className={s.footerLinks} href="">О проекте</a>
+                        <a className={s.footerLinks} href="">Нормативно-справочная информация</a>
+                        <a className={s.footerLinks} href="">Работодателю</a>
+                        <a className={s.footerLinks} href="">Работнику</a>
+                    </footer>
                 </div>
                 <div className={(screenShow === 'register' || screenShow === 'employerReg' || screenShow === 'workerReg') ? s.rightSideReg : s.rightSide} >
                     <div className={s.quaterRound}></div>

@@ -2,8 +2,6 @@ import s from './modalBIN.module.css';
 import SmallButton from './SmallButton';
 import React, { useState } from 'react'
 
-
-
 const ModalECP = ({ showError, setShowError}) => {
 
     const regexpBIN = /^[0-9]{12}$/;
@@ -27,8 +25,8 @@ const ModalECP = ({ showError, setShowError}) => {
         <>
             <div className={s.modalContainer}>
                 <div className={s.inputBlock}>
-                    <form>
-                        <label>
+                    <form className={s.inputWidth}>
+                        <label className={s.inputWidth}>
                             <div className={s.labelName}>БИН/ИИН</div>
                             <input className={showError ? s.inputFieldError : s.inputField} placeholder='Введите 12 цифр' type={'number'}
                                 name="BIN"

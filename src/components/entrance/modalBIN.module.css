@@ -164,3 +164,16 @@ h3 {
 .inputFieldSmall::-webkit-inner-spin-button {
     display: none;
 }
+
+@media (max-width: 320px) {
+    .inputField {
+        width: calc(100% - 20px);
+    }
+    .modalContainer {
+        width: 100%;
+        justify-content: flex-start;
+    }
+    .buttonPosition {
+        margin: 24px 0;
+    }
+}
