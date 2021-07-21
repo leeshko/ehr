@@ -14,7 +14,7 @@ const ConfirmationCode = ({ children, text }) => {
                             <div className={s.codeField}>
                                 <input className={s.inputFieldSmall} placeholder='1234' type="number" name="BIN" />
                                 <SmallButton 
-                                    width={{width: '200px'}}
+                                    width={{width: '180px'}}
                                 >
                                     <p>Подтвердить и войти</p>
                                 </SmallButton>

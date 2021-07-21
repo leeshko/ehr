@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/static/css/main.b28b4ac6.chunk.css",
-    "main.js": "/static/js/main.1b066a44.chunk.js",
-    "main.js.map": "/static/js/main.1b066a44.chunk.js.map",
+    "main.css": "/static/css/main.5f24fe05.chunk.css",
+    "main.js": "/static/js/main.affeeab9.chunk.js",
+    "main.js.map": "/static/js/main.affeeab9.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.85ecc962.js",
     "runtime-main.js.map": "/static/js/runtime-main.85ecc962.js.map",
-    "static/js/2.7d6fa78e.chunk.js": "/static/js/2.7d6fa78e.chunk.js",
-    "static/js/2.7d6fa78e.chunk.js.map": "/static/js/2.7d6fa78e.chunk.js.map",
+    "static/js/2.b629fde7.chunk.js": "/static/js/2.b629fde7.chunk.js",
+    "static/js/2.b629fde7.chunk.js.map": "/static/js/2.b629fde7.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.b28b4ac6.chunk.css.map": "/static/css/main.b28b4ac6.chunk.css.map",
-    "static/js/2.7d6fa78e.chunk.js.LICENSE.txt": "/static/js/2.7d6fa78e.chunk.js.LICENSE.txt",
-    "static/media/entrance.module.css": "/static/media/PTRootUI-Regular.98c5bbff.woff2"
+    "static/css/main.5f24fe05.chunk.css.map": "/static/css/main.5f24fe05.chunk.css.map",
+    "static/js/2.b629fde7.chunk.js.LICENSE.txt": "/static/js/2.b629fde7.chunk.js.LICENSE.txt",
+    "static/media/entrance.module.css": "/static/media/Roboto.ecf539e1.ttf"
   },
   "entrypoints": [
     "static/js/runtime-main.85ecc962.js",
-    "static/js/2.7d6fa78e.chunk.js",
-    "static/css/main.b28b4ac6.chunk.css",
-    "static/js/main.1b066a44.chunk.js"
+    "static/js/2.b629fde7.chunk.js",
+    "static/css/main.5f24fe05.chunk.css",
+    "static/js/main.affeeab9.chunk.js"
   ]
 }

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import s from './modalBIN.module.css';
 import SelectButton from './SelectButton';
 import Checkbox from './Checkbox';
@@ -8,6 +8,8 @@ import RegisterBlockEnter from './RegisterBlockEnter';
 
 
 const EmployerRegScreen = ({ assign, showError, setShowError }) => {
+
+    const screenWidth = window.innerWidth;
 
 
     const [showEmail, setShowEmail] = useState(false);
@@ -45,30 +47,34 @@ const EmployerRegScreen = ({ assign, showError, setShowError }) => {
                     <form>
                         <label>
                             <div className={s.labelName}>БИН/ИИН</div>
-                            <input className={s.inputField} placeholder='Введите 12 цифр' type="number" maxLength="8" name="BIN" 
+                            <input className={s.inputField} placeholder='Введите 12 цифр' type="number" maxLength="8" name="BIN"
                                 onChange={(e) => {
                                     isBinPattern(e)
-                                }}/>
+                                }} />
+                                
                         </label>
 
                         <label>
                             <div className={s.labelName}>Полное наименование</div>
-                            <input className={s.inputFieldAuto} placeholder='Заполняется автоматически после ввода БИН/ИИН' disabled type="text" name="name" />
+                            <input className={s.inputFieldAuto}
+                                placeholder={screenWidth < 355 ? 'Заполняется автоматически'
+                                    : 'Заполняется автоматически после ввода БИН/ИИН'}
+                                disabled type="text" name="name" />
                         </label>
 
                         <label>
                             <div className={s.labelName}></div>
                             <div className={s.checkboxRow}>
                                 <div className={s.labelName}>Телефон</div>
-                                <Checkbox displayEmail={displayEmail}/>
+                                <Checkbox displayEmail={displayEmail} />
                                 <div className={s.labelName}>E-mail</div>
                             </div>
                             <input className={s.inputField} placeholder={!showEmail ? '+7 (_ _ _) - _ _ _ - _ _ - _ _' : 'e-mail'} type="number" name="number" />
                         </label>
                         <label>
-                            
+
                             {showPassModal ? <PasswordModal /> : null}
-                            <div className={s.labelName}>Придумайте пароль 
+                            <div className={s.labelName}>Придумайте пароль
                                 <span className={s.imgInfo} onClick={modalShow} ></span>
                             </div>
                             <input className={s.inputField} placeholder='Введите свой пароль' type="password" name="password" />
@@ -81,19 +87,19 @@ const EmployerRegScreen = ({ assign, showError, setShowError }) => {
                             <input className={s.inputField} placeholder='ABab1234' type="password" name="password" />
                         </label>
                     </form>
-                        <CheckboxSq>
+                    <CheckboxSq>
                         <p>Согласен/на <a href="#" className={s.agreement}>с пользовательским соглашением</a> и даю согласие на сбор и обработку своих персональных данных</p>
-                        </CheckboxSq>
-                        <a></a>
+                    </CheckboxSq>
+                    <a></a>
                     <div className={s.buttonPosition}>
-                        <SelectButton 
+                        <SelectButton
                             communication={showEmail ? 'email' : 'phone'}
                             assign={assign}
                             job={'employer'}
-                            >
-                                
+                        >
+
                             <p>Подписать ЭЦП и продолжить</p>
-                        </SelectButton>    
+                        </SelectButton>
                     </div>
                     <RegisterBlockEnter />
                 </div>

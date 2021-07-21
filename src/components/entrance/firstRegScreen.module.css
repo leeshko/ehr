@@ -13,3 +13,14 @@
     justify-content: center;
     align-items: center;
 }
+
+@media (max-width: 720px) {
+    .buttonBlock {
+        flex-direction: column;
+    }
+}
+@media (max-width: 320px) {
+    .buttonBlock {
+        flex-direction: column;
+    }
+}

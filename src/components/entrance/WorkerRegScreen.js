@@ -9,6 +9,8 @@ import RegisterBlockEnter from './RegisterBlockEnter';
 
 const WorkerRegScreen = ({assign}) => {
 
+    const screenWidth = window.innerWidth;
+
     const [showEmail, setShowEmail] = useState(false);
     const [showPassModal, setShowPassModal] = useState(false);
 
@@ -31,8 +33,10 @@ const WorkerRegScreen = ({assign}) => {
                         </label>
 
                         <label>
-                            <div className={s.labelName}>Фамилия, имя и отчество (если есть)</div>
-                            <input className={s.inputFieldAuto} placeholder='Заполняется автоматически после ввода ИИН' disabled type="text" name="name" />
+                            <div className={s.labelName}> {screenWidth < 355 ? 'Фамилия, имя и отчество' : 'Фамилия, имя и отчество (если есть)'}</div>
+                            <input className={s.inputFieldAuto} placeholder={screenWidth < 355 ? 'Заполняется автоматически'
+                                : 'Заполняется автоматически после ввода БИН/ИИН'}
+                                disabled type="text" name="name" />
                         </label>
 
                         <label>

@@ -13,6 +13,8 @@ import WorkerRegScreen from './WorkerRegScreen';
 import ConfirmationCode from './ConfirmationCode';
 import ErrorModal from './errorModal';
 import InputFileBtn from './inputFileButton/InputFileBtn';
+import fbLogo from '../../assets/entrance/facebookLogo.png';
+import instLogo from '../../assets/entrance/instagramLogo.png'
 
 
 const Entrance = () => {
@@ -106,10 +108,10 @@ const Entrance = () => {
 
     return (
         <>
-            {showError ?
+            {/* {showError ?
                 <ErrorModal>
                     {(screenShow === 'start' || screenShow === 'employerReg') && <div>Введен неверный БИН/ИИН</div>}
-                </ErrorModal> : null}
+                </ErrorModal> : null} */}
             <div className={s.mainWindow}>
                 <div className={s.leftSide}>
                     <header className={s.topRow}>
@@ -151,11 +153,10 @@ const Entrance = () => {
                         }
 
 
-                        {screenShow === 'ecp' ? <ModalECP
+                        {screenShow === 'ecp' && 
+                        <ModalECP
                             closeModal={closeModal}
-
-
-                        /> : null}
+                        />}
 
                         {screenShow === 'register' && <FirstRegScreen goToEmployer={goToEmployer} goToWorker={goToWorker} />}
 
@@ -163,31 +164,30 @@ const Entrance = () => {
 
                         {screenShow === 'bin' || screenShow === 'ecp' || screenShow === 'start' ? <RegisterBlock register={register} /> : null}
 
-                        {screenShow === 'employerReg' ?
+                        {screenShow === 'employerReg' &&
                             <>
                                 <Text>
                                     <p>Регистрация</p>
                                 </Text>
-                                <h2>Регистрация работодателя</h2>
+                                <h2 className={s.objectOfRegistrationText}>Регистрация работодателя</h2>
 
                                 <EmployerRegScreen
                                     assign={assign}
                                     setShowError={setShowError}
                                 />
                             </>
-                            : null}
+                        }
 
-                        {screenShow === 'workerReg' ?
+                        {screenShow === 'workerReg' &&
                             <>
                                 <Text>
                                     <p>Регистрация</p>
                                 </Text>
-                                <h2>Регистрация работника</h2>
+                            <h2 className={s.objectOfRegistrationText}>Регистрация работника</h2>
 
                                 <WorkerRegScreen
                                     assign={assign} />
-                            </>
-                            : null}
+                            </>}
 
                         {screenShow === 'assignPhoneEmpl' || screenShow === 'assignPhoneWork' ?
 
@@ -205,11 +205,31 @@ const Entrance = () => {
                             : null}
                     </div>
                     <footer className={s.footerBlock}>
-                        <div className={s.footerLogo}></div>  
-                        <a className={s.footerLinks} href="">О проекте</a>
-                        <a className={s.footerLinks} href="">Нормативно-справочная информация</a>
-                        <a className={s.footerLinks} href="">Работодателю</a>
-                        <a className={s.footerLinks} href="">Работнику</a>
+                        <div className={s.footerLogo}></div>
+                        <div className={s.footerLinksBlock}>
+                            <a className={s.footerLinks} href="">О проекте</a>
+                            <a className={s.footerLinks} href="">Нормативно-справочная информация</a>
+                            <a className={s.footerLinks} href="">Работодателю</a>
+                            <a className={s.footerLinks} href="">Работнику</a>
+                        </div>
+                        <p>Мы в соцсетях:</p>
+
+                        <div className={s.socialNetBlock}>
+                            <a href="#">
+                                <img src={fbLogo} alt="" />
+                            </a>
+                            <a href="#">
+                                <img src={instLogo} alt="" />
+                            </a>
+
+                        </div>
+                        <p>Наш телефон:</p>
+                        <span>+7 777 999 66 55</span>
+
+                        <div className={s.copyRight}>
+                            © 2021 «Центр развития трудовых ресурсов»
+                        </div>
+
                     </footer>
                 </div>
                 <div className={(screenShow === 'register' || screenShow === 'employerReg' || screenShow === 'workerReg') ? s.rightSideReg : s.rightSide} >

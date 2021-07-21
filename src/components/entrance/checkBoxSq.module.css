@@ -53,3 +53,9 @@
 .customCheckbox>input:disabled+span::before {
     background-color: #e9ecef;
 }
+
+@media (max-width: 320px) {
+    .customCheckbox>span::before {
+        margin-top: -54px;
+    }
+}

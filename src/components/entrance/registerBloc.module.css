@@ -11,6 +11,11 @@
     text-decoration: none;
 }
 
+@media (max-width: 720px) {
+    .noAcc, .regAcc {
+        font-size: 15px;
+    }
+}
 @media (max-width: 320px) {
     .noAcc, .regAcc {
         font-size: 15px;

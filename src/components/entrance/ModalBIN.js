@@ -2,7 +2,7 @@ import s from './modalBIN.module.css';
 import SmallButton from './SmallButton';
 import React, { useState } from 'react'
 
-const ModalECP = ({ showError, setShowError}) => {
+const ModalBIN = ({ showError, setShowError}) => {
 
     const regexpBIN = /^[0-9]{12}$/;
 
@@ -53,4 +53,4 @@ const ModalECP = ({ showError, setShowError}) => {
     )
 }
 
-export default ModalECP;
+export default ModalBIN;

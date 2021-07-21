@@ -1,5 +1,6 @@
 import s from './text.module.css';
-const Buttons = ({children}) => {
+
+const Text = ({children}) => {
     return (
         <>
         <div className={s.textEnter}>{children}</div>
@@ -7,5 +8,4 @@ const Buttons = ({children}) => {
     )
 }
 
-
-export default Buttons;
+export default Text;
